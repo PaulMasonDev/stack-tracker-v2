@@ -1,6 +1,5 @@
 import React from 'react';
 import './SearchWindow.scss';
-import axios from 'axios';
 
 
 const SearchWindow = ({handleSearch, cityName}) => {
