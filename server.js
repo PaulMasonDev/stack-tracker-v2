@@ -4,11 +4,9 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const htmlToText = require('html-to-text');
 const cors = require('cors');
-const { response } = require('express');
 
 app.use(express.json());
 app.use(cors());
-// const scraperapiClient = require('scraperapi-sdk')('2c16addec87232b6f98f8112b28160f8')
 
 // q=Web%20Developer    THIS IS THE SEARCH TERM
 // max=5 TELLS THE MAXIMUM AMOUNT OF JOBS TO LIST
@@ -48,54 +46,40 @@ let techStack = [
   },
   { name: 'react',
     count: 0
-  },
-];
+  }
+]
 
-app.post('/ziptocity', (req, res) => {
-  const code = req.body.code;
-  let returnData;
-  console.log('GENERATE RUNNING', code);
-  const url = 
-  `https://indreed.herokuapp.com/api/jobs?q=Software%20Developer&l=${code}`;
-  returnData = axios.get(url)
-    .then(response => 
-      res.json(response.data)
-    )
-    .catch(err => console.log(err));
-  console.log(returnData);
-});
-// COMBINE THESE TWO ROUTES LOOK INTO ASYNC WATERFALL
+let location;
+let data;
+
 app.get('/:code', async (req, res) => {
   console.log('FROM BACKEND:', req.params.code);
   const code = req.params.code
-  let data;
+  console.log('GENERATE RUNNING', code);
   await axios
-    .get(`https://indreed.herokuapp.com/api/jobs?q=Software%20Developer&l=${code}`)
+    // EVENTUALLY CREATE PARAMETERS THAT CAN BE SELECTED TO MODIFY MAXIMUM NUMBER
+    .get(`https://indreed.herokuapp.com/api/jobs?q=Software%20Developer&sort=date&max=20&l=${code}`)
     .then(async response => {
+      location = response.data[0].location;
       for (job of response.data) {
         const jobResponse = await axios.get(job.url);
         const $ = cheerio.load(jobResponse.data);
         const textData = await htmlToText.fromString($('body').html());
-        // console.log(textData);
         for (tech of techStack) {
           if (textData.toLowerCase().includes(tech.name)) {
             tech.count++;
           }
         }
       }
-      for (tech of techStack) {
-        console.log(tech.name, tech.count);
+      data = {
+        location: location, 
+        code: code,
+        techStack: techStack
       }
-      return techStack;
+      return data;
     })
-    // .then((data) => {
-    //   console.log(data);
-    //   return data;
-    // })
     .then((data) => res.send(data))
     .catch(err => console.log(err));
-  // console.log('DATA', data);
-  
 });
 
 app.listen(port, (req, res) => {

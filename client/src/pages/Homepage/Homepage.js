@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-
 import './Homepage.scss';
 import SearchWindow from '../../components/SearchWindow/SearchWindow';
 import DisplayWindow from '../../components/DisplayWindow/DisplayWindow';
@@ -9,27 +8,20 @@ import DisplayWindow from '../../components/DisplayWindow/DisplayWindow';
 const Homepage = () => {
   const [cityName, setCityName] = useState('');
   const [techStack, setTechStack] = useState([]);
+  const [zip, setZip] = useState([]);
 
   const handleSearch = (code) => {
     generateCity(code);
   }
 
   const generateCity = (code) => {
-    const data = {
-      code: code
-    }
     console.log(code);
     axios.get(`/${code}`)
       .then(res => {
-        console.log(res);
-        setTechStack(res.data);
-      })
-      .catch(err => console.log(err));
-    axios.post(`http://localhost:5000/ziptocity`, data)
-      .then(res => {
-        console.log(res);
-        const cityName = res.data[0].location;
-        setCityName(cityName);
+        console.log(res.data);
+        setTechStack(res.data.techStack);
+        setCityName(res.data.location);
+        setZip(res.data.code);
       })
       .catch(err => console.log(err));
   }
@@ -43,6 +35,7 @@ const Homepage = () => {
       <DisplayWindow 
         techStack={techStack}
         cityName={cityName}
+        zip={zip}
       />
     </div>
   )
