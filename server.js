@@ -46,7 +46,27 @@ let techStack = [
   },
   { name: 'react',
     count: 0
-  }
+  },
+  { name: 'angular',
+    count: 0
+  },
+  { name: 'flask',
+    count: 0
+  },
+  { name: 'ajax',
+    count: 0
+  },
+  { name: 'agile',
+    count: 0
+  },
+  { name: 'scrum',
+    count: 0
+  },
+  { name: 'kanban',
+    count: 0
+  },
+  
+
 ]
 
 let location;

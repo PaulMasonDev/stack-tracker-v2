@@ -1,4 +1,5 @@
 import React from 'react'
+import { ReactComponent as HtmlLogo } from './icons/html.svg';
 
 const DisplayWindow = ({ techStack, cityName, zip }) => {
   return (
@@ -10,6 +11,7 @@ const DisplayWindow = ({ techStack, cityName, zip }) => {
           return <p key={tech.name}>{tech.name} showed up {tech.count} time(s)</p>
         })
       }
+      <HtmlLogo />
     </div>
   )
 }
