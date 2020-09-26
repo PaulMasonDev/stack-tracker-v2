@@ -1,21 +1,23 @@
 import React from 'react'
-import { ReactComponent as HtmlLogo } from './icons/html.svg';
 
-const DisplayWindow = ({ techStack, cityName, zip }) => {
-  const Html = <HtmlLogo />;
+import InlineSVG from 'svg-inline-react';
+
+const DisplayWindow = ({ techStack, cityName, zip, loading }) => {
   return (
     <div>
       <h1>DISPLAY WINDOW</h1>
-      <h3>Searching in {cityName} {zip} found the following results:</h3>
+      <p>{loading ? "SEARCHING THROUGH JOB POSTS..." : "WAITING FOR A SEARCH"}</p>
+      <h3>{cityName ? `Searching in ${cityName} ${zip} found the following results:`: ``}</h3>
       {
-        techStack.map((tech, i) => {
-          // return <div>
-          //           <p key={tech.name}>{tech.name} showed up {tech.count} time(s)</p>
-          //        </div>
-          return <p key={tech.name}>{Html}{tech.name} showed up {tech.count} time(s)</p>
+        techStack.map(tech => {
+          return <p key={tech.name}><InlineSVG src={tech.svg} /> showed up&nbsp;  
+           {tech.count} 
+          {
+            tech.count === 1 ? " time" : " times"
+          }
+          </p>
         })
       }
-      <HtmlLogo />
     </div>
   )
 }

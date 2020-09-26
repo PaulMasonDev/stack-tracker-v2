@@ -5,6 +5,8 @@ const cheerio = require('cheerio');
 const htmlToText = require('html-to-text');
 const cors = require('cors');
 
+const DATA = require('./DATA');
+
 app.use(express.json());
 app.use(cors());
 
@@ -13,61 +15,9 @@ app.use(cors());
 // l=Lagos country=us USE TO INDENTIFY LOCATION, MAY ALSO USE A ZIP CODE
 // sort=date SORT BY NEWEST
 
-let testUrl;
-
 const port = 5000;
-let techStack = [
-  { name: 'Html',
-    count: 0
-  },
-  { name: 'Css',
-    count: 0
-  },
-  { name: 'Javascript',
-    count: 0
-  },
-  { name: 'Node',
-    count: 0
-  },
-  { name: 'Mongodb',
-    count: 0
-  },
-  { name: 'Sql',
-    count: 0
-  },
-  { name: 'Python',
-    count: 0
-  },
-  { name: 'Django',
-    count: 0
-  },
-  { name: 'Php',
-    count: 0
-  },
-  { name: 'React',
-    count: 0
-  },
-  { name: 'Angular',
-    count: 0
-  },
-  { name: 'Flask',
-    count: 0
-  },
-  { name: 'Ajax',
-    count: 0
-  },
-  { name: 'Agile',
-    count: 0
-  },
-  { name: 'Scrum',
-    count: 0
-  },
-  { name: 'Kanban',
-    count: 0
-  },
-  
 
-]
+let techStack = DATA;
 
 let location;
 let data;
@@ -82,14 +32,30 @@ app.get('/:code', async (req, res) => {
     .then(async response => {
       location = response.data[0].location;
       for (job of response.data) {
-        const jobResponse = await axios.get(job.url);
-        const $ = cheerio.load(jobResponse.data);
-        const textData = await htmlToText.fromString($('body').html());
-        for (tech of techStack) {
-          if (textData.toLowerCase().includes(tech.name)) {
-            tech.count++;
-          }
+        console.log(job.url);
+        const jobResponse = await axios.get(job.url).catch(err => console.log(err));
+        let $;
+        let textData;
+        try {
+          $ = cheerio.load(jobResponse.data);
+          if($){
+            try {
+              textData = htmlToText.fromString($('body').html());
+            } catch (err) {
+              console.log(err);
+            }
+          }  
+        } catch (err) {
+          console.log(err);
         }
+        
+        console.log('PARSING...');
+        for (let tech of techStack) {
+          if (textData && textData.toLowerCase().includes(tech.name)) {
+            tech.count++;
+            console.log(tech.name, tech.count);
+          }
+        }  
       }
       data = {
         location: location, 
@@ -98,8 +64,14 @@ app.get('/:code', async (req, res) => {
       }
       return data;
     })
-    .then((data) => res.send(data))
+    .then((data) => {
+      res.send(data)
+      console.log('DATA SENT TO FRONTEND');
+    } )
     .catch(err => console.log(err));
+    for (tech of techStack) {
+      tech.count = 0;
+    }
 });
 
 app.listen(port, (req, res) => {

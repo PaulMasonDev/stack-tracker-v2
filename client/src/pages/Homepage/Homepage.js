@@ -9,6 +9,7 @@ const Homepage = () => {
   const [cityName, setCityName] = useState('');
   const [techStack, setTechStack] = useState([]);
   const [zip, setZip] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const handleSearch = (code) => {
     generateCity(code);
@@ -16,12 +17,14 @@ const Homepage = () => {
 
   const generateCity = (code) => {
     console.log(code);
+    setLoading(true);
     axios.get(`/${code}`)
       .then(res => {
         console.log(res.data);
         setTechStack(res.data.techStack);
         setCityName(res.data.location);
         setZip(res.data.code);
+        setLoading(false);
       })
       .catch(err => console.log(err));
   }
@@ -36,6 +39,7 @@ const Homepage = () => {
         techStack={techStack}
         cityName={cityName}
         zip={zip}
+        loading={loading}
       />
     </div>
   )
