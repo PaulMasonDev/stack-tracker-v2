@@ -74,6 +74,6 @@ app.get('/:code', async (req, res) => {
     }
 });
 
-app.listen(port, (req, res) => {
+app.listen(process.env.PORT || port, (req, res) => {
   console.log(`Connected on port ${port}`);
 });
