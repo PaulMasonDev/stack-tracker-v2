@@ -17,52 +17,52 @@ let testUrl;
 
 const port = 5000;
 let techStack = [
-  { name: 'html',
+  { name: 'Html',
     count: 0
   },
-  { name: 'css',
+  { name: 'Css',
     count: 0
   },
-  { name: 'javascript',
+  { name: 'Javascript',
     count: 0
   },
-  { name: 'node',
+  { name: 'Node',
     count: 0
   },
-  { name: 'mongodb',
+  { name: 'Mongodb',
     count: 0
   },
-  { name: 'sql',
+  { name: 'Sql',
     count: 0
   },
-  { name: 'python',
+  { name: 'Python',
     count: 0
   },
-  { name: 'django',
+  { name: 'Django',
     count: 0
   },
-  { name: 'php',
+  { name: 'Php',
     count: 0
   },
-  { name: 'react',
+  { name: 'React',
     count: 0
   },
-  { name: 'angular',
+  { name: 'Angular',
     count: 0
   },
-  { name: 'flask',
+  { name: 'Flask',
     count: 0
   },
-  { name: 'ajax',
+  { name: 'Ajax',
     count: 0
   },
-  { name: 'agile',
+  { name: 'Agile',
     count: 0
   },
-  { name: 'scrum',
+  { name: 'Scrum',
     count: 0
   },
-  { name: 'kanban',
+  { name: 'Kanban',
     count: 0
   },
   
