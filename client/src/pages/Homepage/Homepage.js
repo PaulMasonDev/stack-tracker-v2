@@ -15,11 +15,11 @@ const Homepage = () => {
     console.log(code, country, title);
     setLoading(true);
     setCityName('');
-    axios.get(`/${code}/${country}/${title}`)
+    axios.get(`/${code}`)
       .then(res => {
         console.log(res.data);
         setTechStack(res.data.techStack);
-        setCityName(res.data.location);
+        setCityName('CITY');
         setZip(res.data.code);
         setLoading(false);
       })
