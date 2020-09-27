@@ -1,21 +1,27 @@
-import React from 'react';
+
+import React, { useState } from 'react';
 import './SearchWindow.scss';
 
 
 const SearchWindow = ({handleSearch, cityName}) => {
+  const [searchValue, setSearchValue] = useState('');
   const handleSearchChange = (e) => {
-    if (e.target.value.length === 5) {
-      handleSearch(e.target.value);
-    }
+    setSearchValue(e.target.value);
   }
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleSearch(searchValue);
+  }
   return (
     <div className="SearchWindow">
       <h1>SEARCH WINDOW</h1>
-      <input 
-        type="search"
-        placeholder="Enter a zip code to search"
-        onChange={handleSearchChange} />
+      <form onSubmit={handleSubmit}>
+        <input 
+          type="search"
+          placeholder="Enter a zip code to search"
+          onChange={handleSearchChange} />
+        <button type="submit">SUBMIT</button>
+      </form>
       <p>{cityName}</p>
     </div>
   )

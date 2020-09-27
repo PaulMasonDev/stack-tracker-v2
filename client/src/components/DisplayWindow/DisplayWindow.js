@@ -11,7 +11,7 @@ const DisplayWindow = ({ techStack, cityName, zip, loading }) => {
       { cityName &&
         techStack.map(tech => {
           if(tech.count > 0){
-            return <p key={tech.name}><InlineSVG src={tech.svg} />{tech.name} showed up&nbsp;  
+            return <div key={tech.name}><InlineSVG src={tech.svg} />{tech.name} showed up&nbsp;  
               {tech.count} 
               {
                 tech.count === 1 ? " time" : " times"
@@ -21,7 +21,7 @@ const DisplayWindow = ({ techStack, cityName, zip, loading }) => {
                   <a href={info.url} target="_blank">{info.title} at {info.company}</a><br/>
                 </div>
               } )}
-            </p> 
+            </div> 
           }
         })
       }

@@ -81,6 +81,7 @@ app.get('/:code', async (req, res) => {
     .catch(err => console.log(err));
     for (tech of techStack) {
       tech.count = 0;
+      tech.info = [];
     }
 });
 
