@@ -11,15 +11,11 @@ const Homepage = () => {
   const [zip, setZip] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const handleSearch = (code) => {
-    generateCity(code);
-  }
-
-  const generateCity = (code) => {
-    console.log(code);
+  const handleSearch = (code, country, title) => {
+    console.log(code, country, title);
     setLoading(true);
     setCityName('');
-    axios.get(`/${code}`)
+    axios.get(`/${code}/${country}/${title}`)
       .then(res => {
         console.log(res.data);
         setTechStack(res.data.techStack);

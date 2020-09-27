@@ -1,0 +1,21 @@
+.DisplayWindow {
+  text-align: center;
+
+  .tech-header {
+    display: flex;
+    flex-direction: column;
+    
+    .icon {
+      margin-top: 35px;
+      // margin-bottom: 10px;
+    }
+  }
+
+  a {
+    margin: 5px auto 5px;
+    &:visited {
+      color: #212121; 
+    }
+  }
+}
+

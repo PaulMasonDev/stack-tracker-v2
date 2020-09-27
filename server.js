@@ -26,13 +26,14 @@ let techStack = DATA;
 let location;
 let data;
 
-app.get('/:code', async (req, res) => {
-  console.log('FROM BACKEND:', req.params.code);
-  const code = req.params.code
-  console.log('GENERATE RUNNING', code);
+app.get('/:code/:country/:title', async (req, res) => {
+  const code = req.params.code;
+  const country = req.params.country;
+  const title = req.params.title;
+  console.log('GENERATE RUNNING', code, country, title);
   await axios
     // EVENTUALLY CREATE PARAMETERS THAT CAN BE SELECTED TO MODIFY MAXIMUM NUMBER
-    .get(`https://indreed.herokuapp.com/api/jobs?q=Software%20Developer&sort=date&max=20&l=${code}`)
+    .get(`https://indreed.herokuapp.com/api/jobs?q=${title}&sort=date&max=20&l=${code}&country=${country}`)
     .then(async response => {
       location = response.data[0].location;
       for (job of response.data) {
@@ -72,6 +73,7 @@ app.get('/:code', async (req, res) => {
         code: code,
         techStack: techStack
       }
+      techStack.sort((a, b) => (b.count - a.count))
       return data;
     })
     .then((data) => {

@@ -1,5 +1,61 @@
 .SearchWindow {
   display: flex;
   flex-direction: column;
-  justify-content:space-around;
+  justify-content: flex-start;
+  align-items: center;
+
+  div {
+    text-align: center;
+  }
+
+  input[type="search"] {
+    font-size: 1.3rem;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    outline: none;
+    width: 50%;
+    transition: all 0.5s;
+
+    &:hover {
+      transform: scale(1.01);
+      box-shadow: 2.5px 2.5px 5px grey;
+    }
+  }
+
+  input[type="radio"] {
+    transition: all 0.5s;
+    &:hover {
+      transform: scale(1.5);
+    }
+  }
+  
+  form {
+    text-align: center;
+  }
+
+  button {
+    font-size: 1.6rem;
+    margin-top:20px;
+    border-radius: 10px;
+    outline: none;
+    background-color: #0d7377;
+    color: #eeeeee;
+    transition: all 0.5s;
+
+    &:hover {
+      cursor: pointer;
+      color: #212121;
+      background-color:#32e0c4;
+      transform: scale(1.1);
+    }
+  }
+
+  input {
+    margin: 10px;
+  }
+
+  footer {
+    text-align: center;
+  }
 }
