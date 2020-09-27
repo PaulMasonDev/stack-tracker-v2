@@ -35,7 +35,7 @@ app.get('/:code/:country/:title', async (req, res) => {
     .get(`https://indreed.herokuapp.com/api/jobs?q=${title}&sort=date&max=20&l=${code}`)
     .then(async response => {
       if(response.data){
-        location = response.data[0].location;
+        // location = response.data[0].location;
         for (job of response.data) {
           console.log(job);
           const jobResponse = await axios.get(job.url).catch(err => console.log(err));
@@ -69,7 +69,7 @@ app.get('/:code/:country/:title', async (req, res) => {
           }  
         }
         data = {
-          location: location, 
+          // location: location, 
           code: code,
           techStack: techStack
         }
