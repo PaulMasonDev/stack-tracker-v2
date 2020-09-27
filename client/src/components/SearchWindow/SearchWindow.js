@@ -4,34 +4,34 @@ import './SearchWindow.scss';
 
 
 const SearchWindow = ({handleSearch, cityName}) => {
-  // const [searchValue, setSearchValue] = useState();
-  // const [country, setCountry] = useState('us');
-  // const [title, setTitle] = useState('Software Developer')
-  // const handleSearchChange = (e) => {
-  //   setSearchValue(e.target.value);
-  // }
-  // const handleCountryChange = (e) => {
-  //   setCountry(e.target.value);
-  // }
-  // const handleTitleChange = (e) => {
-  //   setTitle(e.target.value);
-  // }
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log(typeof searchValue);
-  //   handleSearch(searchValue, country, title);
-    // const letters = /^[A-Za-z]+$/;
-    // if((typeof Number(searchValue) === "number" && searchValue.length === 5) || searchValue.match(letters)) {
-    //   handleSearch(searchValue, country, title);
-    // } else {
-    //   alert('Please enter a valid 5 digit zip code or city name (state optional)');
-    // }
+  const [searchValue, setSearchValue] = useState();
+  const [country, setCountry] = useState('us');
+  const [title, setTitle] = useState('Software Developer')
+  const handleSearchChange = (e) => {
+    setSearchValue(e.target.value);
+  }
+  const handleCountryChange = (e) => {
+    setCountry(e.target.value);
+  }
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(typeof searchValue);
+    handleSearch(searchValue, country, title);
+    const letters = /^[A-Za-z]+$/;
+    if((typeof Number(searchValue) === "number" && searchValue.length === 5) || searchValue.match(letters)) {
+      handleSearch(searchValue, country, title);
+    } else {
+      alert('Please enter a valid 5 digit zip code or city name (state optional)');
+    }
+  }
     
-  
   return (
     <div className="SearchWindow">
       <h1>STACK TRACKER</h1>
-      {/* <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <div>
           <input 
             type="search"
@@ -39,12 +39,12 @@ const SearchWindow = ({handleSearch, cityName}) => {
             onChange={handleSearchChange} />
           <br />
           <label htmlFor="US">United States</label>
-          <input onChange={handleCountryChange} id="US" type="radio" name="country" value="us" defaultChecked/> */}
+          <input onChange={handleCountryChange} id="US" type="radio" name="country" value="us" defaultChecked/>
           {/* <label for="CAN">CAN</label>
           <input onChange={handleCountryChange} id="CAN" type="radio" name="country" value="ca"/>
           <label for="EU">EU</label>
           <input onChange={handleCountryChange} id="CAN" type="radio" name="country" value="eu"/> */}
-        {/* </div>
+        </div>
         <div>
           <label htmlFor="jrdeveloper">Junior Developer</label>
           <input onChange={handleTitleChange} id="jrdeveloper" type="radio" name="title" value="Junior Developer" />
@@ -59,10 +59,9 @@ const SearchWindow = ({handleSearch, cityName}) => {
       <footer>
         <p>Like what you see? Visit <a href="https://www.paulmasondev.com" target="_blank" rel="noopener noreferrer">www.paulmasondev.com</a> for more.</p>
         <p>Copyright &copy;2020 Stack Tracker</p>
-      </footer> */}
+      </footer>
     </div>
   )
-    }
-
+}
 
 export default SearchWindow;
