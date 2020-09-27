@@ -33,10 +33,10 @@ const Homepage = () => {
         cityName={cityName}
       />
       <DisplayWindow 
-        // techStack={techStack}
-        // cityName={cityName}
-        // zip={zip}
-        // loading={loading}
+        techStack={techStack}
+        cityName={cityName}
+        zip={zip}
+        loading={loading}
       />
     </div>
   )

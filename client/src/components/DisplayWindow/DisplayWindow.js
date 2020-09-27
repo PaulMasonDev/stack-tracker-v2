@@ -8,7 +8,7 @@ const DisplayWindow = ({ techStack, cityName, zip, loading }) => {
   return (
     <div className="DisplayWindow">
       <h1>RESULTS</h1>
-      {/* <div>{loading ? 
+      <div>{loading ? 
           <div>
             <Loader 
               type="Grid" 
@@ -61,7 +61,7 @@ const DisplayWindow = ({ techStack, cityName, zip, loading }) => {
       }
       <footer>
         <p>Copyright &copy;2020 Stack Tracker</p>
-      </footer> */}
+      </footer>
     </div>
   )
 }
