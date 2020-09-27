@@ -4,7 +4,7 @@ import InlineSVG from 'svg-inline-react';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import Loader from 'react-loader-spinner';
 
-const DisplayWindow = ({ techStack, cityName, zip, loading }) => {
+const DisplayWindow = ({ techStack, cityName, distance, loading }) => {
   return (
     <div className="DisplayWindow">
       <h1>RESULTS</h1>
@@ -32,7 +32,7 @@ const DisplayWindow = ({ techStack, cityName, zip, loading }) => {
           }</div>
       <h3>{cityName ? 
         <div>
-          <p>Searching in {cityName} found the following results.</p>
+          <p>Searching within {distance} {distance === 1 ? "mile" : "miles"} of {cityName} found the following results.</p>
           <p>Good luck on the job hunt. YOU GOT THIS!</p>
         </div>
         : ``}

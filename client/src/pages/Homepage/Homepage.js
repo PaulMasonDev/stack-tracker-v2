@@ -10,12 +10,14 @@ const Homepage = () => {
   const [techStack, setTechStack] = useState([]);
   const [zip, setZip] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [distance, setDistance] = useState(25);
 
-  const handleSearch = (code, country, title, limitResults) => {
-    console.log(code, country, title, limitResults);
+  const handleSearch = (code, country, title, limitResults, radius) => {
+    console.log(code, country, title, limitResults, radius);
     setLoading(true);
     setCityName('');
-    axios.get(`/${code}/${limitResults}`)
+    setDistance(radius);
+    axios.get(`/${code}/${limitResults}/${radius}`)
       .then(res => {
         console.log(res.data);
         setTechStack(res.data.techStack);
@@ -35,8 +37,8 @@ const Homepage = () => {
       <DisplayWindow 
         techStack={techStack}
         cityName={cityName}
-        zip={zip}
         loading={loading}
+        distance={distance}
       />
     </div>
   )

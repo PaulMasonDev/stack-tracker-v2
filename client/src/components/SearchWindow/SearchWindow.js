@@ -8,6 +8,7 @@ const SearchWindow = ({handleSearch, cityName}) => {
   const [country, setCountry] = useState('us');
   const [title, setTitle] = useState('Software Developer');
   const [limitResults, setLimitResults] = useState(false);
+  const [radius, setRadius] = useState(25);
 
   const handleSearchChange = (e) => {
     setSearchValue(e.target.value);
@@ -23,11 +24,15 @@ const SearchWindow = ({handleSearch, cityName}) => {
     limitResults ? setLimitResults(false) : setLimitResults(true);
   }
 
+  const handleRadius = (e) => {
+    setRadius(e.target.value);
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const letters = /^[A-Za-z]+$/;
     if((typeof Number(searchValue) === "number" && searchValue.length === 5) || searchValue.match(letters)) {
-      handleSearch(searchValue, country, title, limitResults);
+      handleSearch(searchValue, country, title, limitResults, radius);
     } else {
       alert('Please enter a valid 5 digit zip code or city name (state optional)');
     }
@@ -60,7 +65,18 @@ const SearchWindow = ({handleSearch, cityName}) => {
              />
             Limit results (May speed up search time in metro areas)
           </label>
-          
+        </div>
+        <div>
+          <label>
+            <input 
+              type="number" 
+              min="0" 
+              max="100"
+              value={radius}
+              onChange={handleRadius}
+            />
+            Job Search Radius (1-100 miles)
+          </label>
         </div>
         {/* <div>
           <label htmlFor="jrdeveloper">Junior Developer</label>
