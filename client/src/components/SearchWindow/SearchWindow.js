@@ -6,23 +6,28 @@ import './SearchWindow.scss';
 const SearchWindow = ({handleSearch, cityName}) => {
   const [searchValue, setSearchValue] = useState();
   const [country, setCountry] = useState('us');
-  const [title, setTitle] = useState('Software Developer')
+  const [title, setTitle] = useState('Software Developer');
+  const [limitResults, setLimitResults] = useState(false);
+
   const handleSearchChange = (e) => {
     setSearchValue(e.target.value);
   }
   const handleCountryChange = (e) => {
     setCountry(e.target.value);
   }
-  const handleTitleChange = (e) => {
-    setTitle(e.target.value);
+  // const handleTitleChange = (e) => {
+  //   setTitle(e.target.value);
+  // }
+
+  const handleChecked = () => {
+    limitResults ? setLimitResults(false) : setLimitResults(true);
   }
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(typeof searchValue);
-    handleSearch(searchValue, country, title);
     const letters = /^[A-Za-z]+$/;
     if((typeof Number(searchValue) === "number" && searchValue.length === 5) || searchValue.match(letters)) {
-      handleSearch(searchValue, country, title);
+      handleSearch(searchValue, country, title, limitResults);
     } else {
       alert('Please enter a valid 5 digit zip code or city name (state optional)');
     }
@@ -44,6 +49,18 @@ const SearchWindow = ({handleSearch, cityName}) => {
           <input onChange={handleCountryChange} id="CAN" type="radio" name="country" value="ca"/>
           <label for="EU">EU</label>
           <input onChange={handleCountryChange} id="CAN" type="radio" name="country" value="eu"/> */}
+        </div>
+        <div>
+          <label>
+            <input 
+              type="checkbox" 
+              name="num-results"
+              defaultChecked={limitResults}
+              onChange={handleChecked}
+             />
+            Limit results (May speed up search time in metro areas)
+          </label>
+          
         </div>
         {/* <div>
           <label htmlFor="jrdeveloper">Junior Developer</label>

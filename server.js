@@ -25,15 +25,17 @@ let techStack = DATA;
 let location;
 let data;
 
-app.get('/:code', async (req, res) => {
+app.get('/:code/:limitResults', async (req, res) => {
   const code = req.params.code;
+  console.log(req.params.limitResults);
+  const resultsNum = req.params.limitResults ? 10 : 20 ;
   //THERE SEEMS TO BE A BUG WHEN TRYING TO USE EITHER TITLE OR COUNTRY
   // const country = req.params.country;
   // const title = req.params.title;
   // console.log('GENERATE RUNNING', code, country, title);
   await axios
     // EVENTUALLY CREATE PARAMETERS THAT CAN BE SELECTED TO MODIFY MAXIMUM NUMBER
-    .get(`https://indreed.herokuapp.com/api/jobs?q=Software%20Developer&sort=date&max=20&l=${code}`)
+    .get(`https://indreed.herokuapp.com/api/jobs?q=Software%20Developer&sort=date&max=${resultsNum}&l=${code}`)
     .then(async response => {
       if(response.data){
         location = response.data[0].location;

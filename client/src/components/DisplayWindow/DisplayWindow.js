@@ -40,7 +40,7 @@ const DisplayWindow = ({ techStack, cityName, zip, loading }) => {
       { cityName &&
         techStack.map(tech => {
           if(tech.count > 0){
-            return <div className="tech-header" key={tech.name}><InlineSVG className="icon" src={tech.svg} />
+            return <div className="tech-header" key={Math.random() * 9999}><InlineSVG className="icon" src={tech.svg} />
               <h4>
                 {tech.name.slice(0,1).toUpperCase() + tech.name.slice(1,)} showed up&nbsp;  
                 {tech.count} 
