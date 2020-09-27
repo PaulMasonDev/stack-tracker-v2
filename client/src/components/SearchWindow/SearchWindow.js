@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import './SearchWindow.scss';
+// import './SearchWindow.scss';
 
 
 const SearchWindow = ({handleSearch, cityName}) => {

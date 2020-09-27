@@ -1,5 +1,5 @@
 import React from 'react';
-import './DisplayWindow.scss';
+// import './DisplayWindow.scss';
 import InlineSVG from 'svg-inline-react';
 // import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 // import Loader from 'react-loader-spinner';
