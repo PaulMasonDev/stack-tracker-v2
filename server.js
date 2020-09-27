@@ -38,7 +38,7 @@ app.get('/:code/:limitResults/:radius', async (req, res) => {
     // EVENTUALLY CREATE PARAMETERS THAT CAN BE SELECTED TO MODIFY MAXIMUM NUMBER
     .get(`https://indreed.herokuapp.com/api/jobs?q=Software%20Developer&sort=date&max=${resultsNum}&l=${code}&radius=${radius}`)
     .then(async response => {
-      if(response.data){
+      if(response.data.length > 0){
         location = response.data[0].location;
         for (job of response.data) {
           console.log(job);
@@ -80,7 +80,7 @@ app.get('/:code/:limitResults/:radius', async (req, res) => {
         techStack.sort((a, b) => (b.count - a.count))
         return data;
       }
-      
+      return "No Results"
     })
     .then((data) => {
       res.send(data)

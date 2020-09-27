@@ -11,6 +11,7 @@ const Homepage = () => {
   const [zip, setZip] = useState([]);
   const [loading, setLoading] = useState(false);
   const [distance, setDistance] = useState(25);
+  const [noResults, setNoResults] = useState(false);
 
   const handleSearch = (code, country, title, limitResults, radius) => {
     console.log(code, country, title, limitResults, radius);
@@ -20,10 +21,15 @@ const Homepage = () => {
     axios.get(`/${code}/${limitResults}/${radius}`)
       .then(res => {
         console.log(res.data);
-        setTechStack(res.data.techStack);
-        setCityName(res.data.location);
-        setZip(res.data.code);
-        setLoading(false);
+        if(res.data === "No Results") {
+          setNoResults(true);
+        } else {
+          setNoResults(false);
+          setTechStack(res.data.techStack);
+          setCityName(res.data.location);
+          setZip(res.data.code);
+        }
+        setLoading(false);  
       })
       .catch(err => console.log(err));
   }
@@ -39,6 +45,7 @@ const Homepage = () => {
         cityName={cityName}
         loading={loading}
         distance={distance}
+        noResults={noResults}
       />
     </div>
   )

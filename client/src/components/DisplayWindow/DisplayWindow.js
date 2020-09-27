@@ -4,7 +4,7 @@ import InlineSVG from 'svg-inline-react';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import Loader from 'react-loader-spinner';
 
-const DisplayWindow = ({ techStack, cityName, distance, loading }) => {
+const DisplayWindow = ({ techStack, cityName, distance, loading, noResults }) => {
   return (
     <div className="DisplayWindow">
       <h1>RESULTS</h1>
@@ -30,12 +30,12 @@ const DisplayWindow = ({ techStack, cityName, distance, loading }) => {
             <p>WAITING FOR A SEARCH</p>
           </div>
           }</div>
-      <h3>{cityName ? 
+      <h3>{cityName && noResults === false ? 
         <div>
-          <p>Searching within {distance} {distance === 1 ? "mile" : "miles"} of {cityName} found the following results.</p>
+          <p>Searched within {distance} {distance === 1 ? "mile" : "miles"} of {cityName} found the following results.</p>
           <p>Good luck on the job hunt. YOU GOT THIS!</p>
         </div>
-        : ``}
+        : ''}
       </h3>
       { cityName &&
         techStack.map(tech => {
@@ -59,6 +59,7 @@ const DisplayWindow = ({ techStack, cityName, distance, loading }) => {
           }
         })
       }
+      {noResults ? <div>No results found. Try changing your search radius.</div> : null}
       <footer>
         <p>Copyright &copy;2020 Stack Tracker</p>
       </footer>
