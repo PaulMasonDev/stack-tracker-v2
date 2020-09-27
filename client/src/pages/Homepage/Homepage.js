@@ -6,37 +6,37 @@ import SearchWindow from '../../components/SearchWindow/SearchWindow';
 import DisplayWindow from '../../components/DisplayWindow/DisplayWindow';
 
 const Homepage = () => {
-  const [cityName, setCityName] = useState('');
-  const [techStack, setTechStack] = useState([]);
-  const [zip, setZip] = useState([]);
-  const [loading, setLoading] = useState(false);
+  // const [cityName, setCityName] = useState('');
+  // const [techStack, setTechStack] = useState([]);
+  // const [zip, setZip] = useState([]);
+  // const [loading, setLoading] = useState(false);
 
-  const handleSearch = (code, country, title) => {
-    console.log(code, country, title);
-    setLoading(true);
-    setCityName('');
-    axios.get(`/${code}/${country}/${title}`)
-      .then(res => {
-        console.log(res.data);
-        setTechStack(res.data.techStack);
-        setCityName(res.data.location);
-        setZip(res.data.code);
-        setLoading(false);
-      })
-      .catch(err => console.log(err));
-  }
+  // const handleSearch = (code, country, title) => {
+  //   console.log(code, country, title);
+  //   setLoading(true);
+  //   setCityName('');
+  //   axios.get(`/${code}/${country}/${title}`)
+  //     .then(res => {
+  //       console.log(res.data);
+  //       setTechStack(res.data.techStack);
+  //       setCityName(res.data.location);
+  //       setZip(res.data.code);
+  //       setLoading(false);
+  //     })
+  //     .catch(err => console.log(err));
+  // }
   
   return (
     <div className="Homepage">
       <SearchWindow
-        handleSearch={handleSearch}
-        cityName={cityName}
+        // handleSearch={handleSearch}
+        // cityName={cityName}
       />
       <DisplayWindow 
-        techStack={techStack}
-        cityName={cityName}
-        zip={zip}
-        loading={loading}
+        // techStack={techStack}
+        // cityName={cityName}
+        // zip={zip}
+        // loading={loading}
       />
     </div>
   )

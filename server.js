@@ -8,7 +8,6 @@ const path = require('path');
 const enforce = require('express-sslify');
 
 const DATA = require('./DATA');
-const { join } = require('path');
 
 app.use(express.json());
 app.use(cors());
