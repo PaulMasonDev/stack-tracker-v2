@@ -27,6 +27,7 @@ let data;
 
 app.get('/:code', async (req, res) => {
   const code = req.params.code;
+  //THERE SEEMS TO BE A BUG WHEN TRYING TO USE EITHER TITLE OR COUNTRY
   // const country = req.params.country;
   // const title = req.params.title;
   // console.log('GENERATE RUNNING', code, country, title);
@@ -35,7 +36,7 @@ app.get('/:code', async (req, res) => {
     .get(`https://indreed.herokuapp.com/api/jobs?q=Software%20Developer&sort=date&max=20&l=${code}`)
     .then(async response => {
       if(response.data){
-        // location = response.data[0].location;
+        location = response.data[0].location;
         for (job of response.data) {
           console.log(job);
           const jobResponse = await axios.get(job.url).catch(err => console.log(err));
@@ -63,17 +64,17 @@ app.get('/:code', async (req, res) => {
                 company: job.company,
                 title: job.title
               }
-              // tech.info.push(info);
+              tech.info.push(info);
               console.log(tech.name, tech.count);
             }
           }  
         }
         data = {
-          // location: location, 
+          location: location, 
           code: code,
           techStack: techStack
         }
-        // techStack.sort((a, b) => (b.count - a.count))
+        techStack.sort((a, b) => (b.count - a.count))
         return data;
       }
       

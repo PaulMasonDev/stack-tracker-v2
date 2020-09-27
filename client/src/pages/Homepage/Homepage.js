@@ -19,7 +19,7 @@ const Homepage = () => {
       .then(res => {
         console.log(res.data);
         setTechStack(res.data.techStack);
-        setCityName('CITY');
+        setCityName(res.data.location);
         setZip(res.data.code);
         setLoading(false);
       })

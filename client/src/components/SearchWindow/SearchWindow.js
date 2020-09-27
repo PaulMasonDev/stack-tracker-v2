@@ -45,14 +45,14 @@ const SearchWindow = ({handleSearch, cityName}) => {
           <label for="EU">EU</label>
           <input onChange={handleCountryChange} id="CAN" type="radio" name="country" value="eu"/> */}
         </div>
-        <div>
+        {/* <div>
           <label htmlFor="jrdeveloper">Junior Developer</label>
           <input onChange={handleTitleChange} id="jrdeveloper" type="radio" name="title" value="Junior Developer" />
           <label htmlFor="softwaredeveloper">Software Developer</label>
           <input onChange={handleTitleChange} id="softwaredeveloper" type="radio" name="title" value="Software Developer" defaultChecked/>
           <label htmlFor="seniordeveloper">Senior Developer</label>
           <input onChange={handleTitleChange} id="seniordeveloper" type="radio" name="title" value="Senior Developer" />
-        </div>
+        </div> */}
         <button type="submit">SUBMIT</button>
       </form>
       <p>{cityName}</p>

@@ -17,6 +17,7 @@
     outline: none;
     width: 50%;
     transition: all 0.5s;
+    
 
     &:hover {
       transform: scale(1.01);
@@ -33,6 +34,7 @@
   
   form {
     text-align: center;
+    width: 100%;
   }
 
   button {
