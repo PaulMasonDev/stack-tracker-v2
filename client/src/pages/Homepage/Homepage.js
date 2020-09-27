@@ -13,11 +13,11 @@ const Homepage = () => {
   const [distance, setDistance] = useState(25);
   const [noResults, setNoResults] = useState(false);
 
-  const handleSearch = (code, country, title, limitResults, radius) => {
-    console.log(code, country, title, limitResults, radius);
+  const handleSearch = (code, limitResults) => {
+    console.log(code, limitResults);
     setLoading(true);
     setCityName('');
-    setDistance(radius);
+    // setDistance(radius);
     axios.get(`/${code}/${limitResults}`)
       .then(res => {
         console.log(res.data);
