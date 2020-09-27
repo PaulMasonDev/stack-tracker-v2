@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-// import './SearchWindow.scss';
+import './SearchWindow.scss';
 
 
 const SearchWindow = ({handleSearch, cityName}) => {
@@ -19,12 +19,13 @@ const SearchWindow = ({handleSearch, cityName}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(typeof searchValue);
-    const letters = /^[A-Za-z]+$/;
-    if((typeof Number(searchValue) === "number" && searchValue.length === 5) || searchValue.match(letters)) {
-      handleSearch(searchValue, country, title);
-    } else {
-      alert('Please enter a valid 5 digit zip code or city name (state optional)');
-    }
+    handleSearch(searchValue, country, title);
+    // const letters = /^[A-Za-z]+$/;
+    // if((typeof Number(searchValue) === "number" && searchValue.length === 5) || searchValue.match(letters)) {
+    //   handleSearch(searchValue, country, title);
+    // } else {
+    //   alert('Please enter a valid 5 digit zip code or city name (state optional)');
+    // }
     
   }
   return (
