@@ -20,7 +20,7 @@ const SearchWindow = ({handleSearch, cityName}) => {
     e.preventDefault();
     console.log(typeof searchValue);
     const letters = /^[A-Za-z]+$/;
-    if(typeof Number(searchValue) === "number" && searchValue.length === 5 ||  typeof(searchValue + 0) === "NaN" || searchValue.match(letters)) {
+    if((typeof Number(searchValue) === "number" && searchValue.length === 5) ||  typeof(searchValue + 0) === "NaN" || searchValue.match(letters)) {
       handleSearch(searchValue, country, title);
     } else {
       alert('Please enter a valid 5 digit zip code or city name (state optional)');
@@ -37,7 +37,7 @@ const SearchWindow = ({handleSearch, cityName}) => {
             placeholder="Enter a city or zip code to search"
             onChange={handleSearchChange} />
           <br />
-          <label for="US">United States</label>
+          <label htmlFor="US">United States</label>
           <input onChange={handleCountryChange} id="US" type="radio" name="country" value="us" defaultChecked/>
           {/* <label for="CAN">CAN</label>
           <input onChange={handleCountryChange} id="CAN" type="radio" name="country" value="ca"/>
@@ -45,18 +45,18 @@ const SearchWindow = ({handleSearch, cityName}) => {
           <input onChange={handleCountryChange} id="CAN" type="radio" name="country" value="eu"/> */}
         </div>
         <div>
-          <label for="jrdeveloper">Junior Developer</label>
+          <label htmlFor="jrdeveloper">Junior Developer</label>
           <input onChange={handleTitleChange} id="jrdeveloper" type="radio" name="title" value="Junior Developer" />
-          <label for="softwaredeveloper">Software Developer</label>
+          <label htmlFor="softwaredeveloper">Software Developer</label>
           <input onChange={handleTitleChange} id="softwaredeveloper" type="radio" name="title" value="Software Developer" defaultChecked/>
-          <label for="seniordeveloper">Senior Developer</label>
+          <label htmlFor="seniordeveloper">Senior Developer</label>
           <input onChange={handleTitleChange} id="seniordeveloper" type="radio" name="title" value="Senior Developer" />
         </div>
         <button type="submit">SUBMIT</button>
       </form>
       <p>{cityName}</p>
       <footer>
-        <p>Like what you see? Visit <a href="https://www.paulmasondev.com" target="_blank">www.paulmasondev.com</a> for more.</p>
+        <p>Like what you see? Visit <a href="https://www.paulmasondev.com" target="_blank" rel="noopener noreferrer">www.paulmasondev.com</a> for more.</p>
         <p>Copyright &copy;2020 Stack Tracker</p>
       </footer>
     </div>

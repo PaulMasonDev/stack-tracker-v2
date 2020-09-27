@@ -8,7 +8,7 @@ const DisplayWindow = ({ techStack, cityName, zip, loading }) => {
   return (
     <div className="DisplayWindow">
       <h1>RESULTS</h1>
-      <p>{loading ? 
+      <div>{loading ? 
           <div>
             <Loader 
               type="Grid" 
@@ -29,7 +29,7 @@ const DisplayWindow = ({ techStack, cityName, zip, loading }) => {
             />
             <p>WAITING FOR A SEARCH</p>
           </div>
-          }</p>
+          }</div>
       <h3>{cityName ? 
         <div>
           <p>Searching in {cityName} found the following results.</p>
