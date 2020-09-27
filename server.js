@@ -34,46 +34,49 @@ app.get('/:code/:country/:title', async (req, res) => {
     // EVENTUALLY CREATE PARAMETERS THAT CAN BE SELECTED TO MODIFY MAXIMUM NUMBER
     .get(`https://indreed.herokuapp.com/api/jobs?q=${title}&sort=date&max=20&l=${code}`)
     .then(async response => {
-      location = response.data[0].location;
-      for (job of response.data) {
-        console.log(job);
-        const jobResponse = await axios.get(job.url).catch(err => console.log(err));
-        let $;
-        let textData;
-        try {
-          $ = cheerio.load(jobResponse.data);
-          if($){
-            try {
-              textData = htmlToText.fromString($('body').html());
-            } catch (err) {
-              console.log(err);
+      if(response.data){
+        location = response.data[0].location;
+        for (job of response.data) {
+          console.log(job);
+          const jobResponse = await axios.get(job.url).catch(err => console.log(err));
+          let $;
+          let textData;
+          try {
+            $ = cheerio.load(jobResponse.data);
+            if($){
+              try {
+                textData = htmlToText.fromString($('body').html());
+              } catch (err) {
+                console.log(err);
+              }
+            }  
+          } catch (err) {
+            console.log(err);
+          }
+          
+          console.log('PARSING...');
+          for (let tech of techStack) {
+            if (textData && textData.toLowerCase().includes(tech.name)) {
+              tech.count++;
+              const info = {
+                url: job.url,
+                company: job.company,
+                title: job.title
+              }
+              // tech.info.push(info);
+              console.log(tech.name, tech.count);
             }
           }  
-        } catch (err) {
-          console.log(err);
         }
-        
-        console.log('PARSING...');
-        for (let tech of techStack) {
-          if (textData && textData.toLowerCase().includes(tech.name)) {
-            tech.count++;
-            const info = {
-              url: job.url,
-              company: job.company,
-              title: job.title
-            }
-            // tech.info.push(info);
-            console.log(tech.name, tech.count);
-          }
-        }  
+        data = {
+          location: location, 
+          code: code,
+          techStack: techStack
+        }
+        // techStack.sort((a, b) => (b.count - a.count))
+        return data;
       }
-      data = {
-        location: location, 
-        code: code,
-        techStack: techStack
-      }
-      // techStack.sort((a, b) => (b.count - a.count))
-      return data;
+      
     })
     .then((data) => {
       res.send(data)
