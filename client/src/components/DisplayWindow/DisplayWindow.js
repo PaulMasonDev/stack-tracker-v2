@@ -1,32 +1,32 @@
 import React from 'react';
 import './DisplayWindow.scss';
 import InlineSVG from 'svg-inline-react';
-// import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
-// import Loader from 'react-loader-spinner';
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
+import Loader from 'react-loader-spinner';
 
 const DisplayWindow = ({ techStack, cityName, zip, loading }) => {
   return (
     <div className="DisplayWindow">
       <h1>RESULTS</h1>
-      <div>{loading ? 
+      {/* <div>{loading ? 
           <div>
-            {/* <Loader 
+            <Loader 
               type="Grid" 
               color="#0d7377" 
               height={200} 
               width={200} 
               timeout={0} 
-            /> */}
+            />
             <p>Scraping the interwebs. This may take up to 30 seconds...</p>
           </div> : 
           <div>
-            {/* <Loader
+            <Loader
               type="Bars" 
               color="#0d7377" 
               height={200} 
               width={200} 
               timeout={0} 
-            /> */}
+            />
             <p>WAITING FOR A SEARCH</p>
           </div>
           }</div>
@@ -61,7 +61,7 @@ const DisplayWindow = ({ techStack, cityName, zip, loading }) => {
       }
       <footer>
         <p>Copyright &copy;2020 Stack Tracker</p>
-      </footer>
+      </footer> */}
     </div>
   )
 }
