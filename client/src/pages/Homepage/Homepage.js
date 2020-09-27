@@ -18,6 +18,7 @@ const Homepage = () => {
   const generateCity = (code) => {
     console.log(code);
     setLoading(true);
+    setCityName('');
     axios.get(`/${code}`)
       .then(res => {
         console.log(res.data);

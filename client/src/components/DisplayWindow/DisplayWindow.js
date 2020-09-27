@@ -8,14 +8,16 @@ const DisplayWindow = ({ techStack, cityName, zip, loading }) => {
       <h1>DISPLAY WINDOW</h1>
       <p>{loading ? "SEARCHING THROUGH JOB POSTS..." : "WAITING FOR A SEARCH"}</p>
       <h3>{cityName ? `Searching in ${cityName} ${zip} found the following results:`: ``}</h3>
-      {
+      { cityName &&
         techStack.map(tech => {
-          return <p key={tech.name}><InlineSVG src={tech.svg} /> showed up&nbsp;  
-           {tech.count} 
-          {
-            tech.count === 1 ? " time" : " times"
+          if(tech.count > 0){
+            return <p key={tech.name}><InlineSVG src={tech.svg} />{tech.name} showed up&nbsp;  
+              {tech.count} 
+              {
+                tech.count === 1 ? " time" : " times"
+              }
+            </p> 
           }
-          </p>
         })
       }
     </div>
