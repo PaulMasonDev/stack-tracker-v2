@@ -56,6 +56,7 @@ app.get('/:code', async (req, res) => {
         for (let tech of techStack) {
           if (textData && textData.toLowerCase().includes(tech.name)) {
             tech.count++;
+            tech.url.push(job.url);
             console.log(tech.name, tech.count);
           }
         }  

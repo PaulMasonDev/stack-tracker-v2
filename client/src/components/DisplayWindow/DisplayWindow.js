@@ -16,6 +16,11 @@ const DisplayWindow = ({ techStack, cityName, zip, loading }) => {
               {
                 tech.count === 1 ? " time" : " times"
               }
+              {tech.url && tech.url.map(url=> {
+                return <div>
+                  <a href={url} target="_blank">{url}</a><br/>
+                </div>
+              } )}
             </p> 
           }
         })
