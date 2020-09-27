@@ -4,7 +4,7 @@ import './SearchWindow.scss';
 
 
 const SearchWindow = ({handleSearch, cityName}) => {
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState();
   const [country, setCountry] = useState('us');
   const [title, setTitle] = useState('Software Developer')
   const handleSearchChange = (e) => {
@@ -18,7 +18,14 @@ const SearchWindow = ({handleSearch, cityName}) => {
   }
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleSearch(searchValue, country, title);
+    console.log(typeof searchValue);
+    const letters = /^[A-Za-z]+$/;
+    if(typeof Number(searchValue) === "number" && searchValue.length === 5 ||  typeof(searchValue + 0) === "NaN" || searchValue.match(letters)) {
+      handleSearch(searchValue, country, title);
+    } else {
+      alert('Please enter a valid 5 digit zip code or city name (state optional)');
+    }
+    
   }
   return (
     <div className="SearchWindow">
@@ -49,7 +56,7 @@ const SearchWindow = ({handleSearch, cityName}) => {
       </form>
       <p>{cityName}</p>
       <footer>
-        <p>Like what you see? Visit <a href="https://www.paulmasondev.com" target="_blank">www.paulmasondev.com</a> to get in touch with me.</p>
+        <p>Like what you see? Visit <a href="https://www.paulmasondev.com" target="_blank">www.paulmasondev.com</a> for more.</p>
         <p>Copyright &copy;2020 Stack Tracker</p>
       </footer>
     </div>

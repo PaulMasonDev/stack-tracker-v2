@@ -1,5 +1,6 @@
 .DisplayWindow {
   text-align: center;
+  padding: 15px;
 
   .tech-header {
     display: flex;
@@ -11,11 +12,6 @@
     }
   }
 
-  a {
-    margin: 5px auto 5px;
-    &:visited {
-      color: #212121; 
-    }
-  }
+  
 }
 

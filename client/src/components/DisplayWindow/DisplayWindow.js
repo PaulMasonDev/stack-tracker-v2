@@ -17,17 +17,17 @@ const DisplayWindow = ({ techStack, cityName, zip, loading }) => {
               width={200} 
               timeout={0} 
             />
-            <p>Please wait while I scrape the interwebs. This may take up to 30 seconds...</p>
+            <p>Scraping the interwebs. This may take up to 30 seconds...</p>
           </div> : 
           <div>
-            <p>WAITING FOR A SEARCH</p>
             <Loader
               type="Bars" 
               color="#0d7377" 
-              height={100} 
-              width={100} 
+              height={200} 
+              width={200} 
               timeout={0} 
             />
+            <p>WAITING FOR A SEARCH</p>
           </div>
           }</p>
       <h3>{cityName ? 
@@ -57,6 +57,9 @@ const DisplayWindow = ({ techStack, cityName, zip, loading }) => {
           }
         })
       }
+      <footer>
+        <p>Copyright &copy;2020 Stack Tracker</p>
+      </footer>
     </div>
   )
 }
