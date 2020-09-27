@@ -8,6 +8,7 @@ const path = require('path');
 const enforce = require('express-sslify');
 
 const DATA = require('./DATA');
+const { join } = require('path');
 
 app.use(express.json());
 app.use(cors());
@@ -35,7 +36,7 @@ app.get('/:code', async (req, res) => {
     .then(async response => {
       location = response.data[0].location;
       for (job of response.data) {
-        console.log(job.url);
+        console.log(job);
         const jobResponse = await axios.get(job.url).catch(err => console.log(err));
         let $;
         let textData;
@@ -56,7 +57,12 @@ app.get('/:code', async (req, res) => {
         for (let tech of techStack) {
           if (textData && textData.toLowerCase().includes(tech.name)) {
             tech.count++;
-            tech.url.push(job.url);
+            const info = {
+              url: job.url,
+              company: job.company,
+              title: job.title
+            }
+            tech.info.push(info);
             console.log(tech.name, tech.count);
           }
         }  

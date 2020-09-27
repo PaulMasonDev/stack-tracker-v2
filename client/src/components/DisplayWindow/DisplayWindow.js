@@ -16,9 +16,9 @@ const DisplayWindow = ({ techStack, cityName, zip, loading }) => {
               {
                 tech.count === 1 ? " time" : " times"
               }
-              {tech.url && tech.url.map(url=> {
+              {tech.info && tech.info.map(info=> {
                 return <div>
-                  <a href={url} target="_blank">{url}</a><br/>
+                  <a href={info.url} target="_blank">{info.title} at {info.company}</a><br/>
                 </div>
               } )}
             </p> 
