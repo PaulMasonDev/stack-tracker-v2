@@ -18,7 +18,7 @@ const Homepage = () => {
     setLoading(true);
     setCityName('');
     setDistance(radius);
-    axios.get(`/${code}/${limitResults}/${radius}`)
+    axios.get(`/${code}/${limitResults}`)
       .then(res => {
         console.log(res.data);
         if(res.data === "No Results") {
