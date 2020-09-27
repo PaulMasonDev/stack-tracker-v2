@@ -20,7 +20,7 @@ const SearchWindow = ({handleSearch, cityName}) => {
     e.preventDefault();
     console.log(typeof searchValue);
     const letters = /^[A-Za-z]+$/;
-    if((typeof Number(searchValue) === "number" && searchValue.length === 5) ||  typeof(searchValue + 0) === "NaN" || searchValue.match(letters)) {
+    if((typeof Number(searchValue) === "number" && searchValue.length === 5) || searchValue.match(letters)) {
       handleSearch(searchValue, country, title);
     } else {
       alert('Please enter a valid 5 digit zip code or city name (state optional)');

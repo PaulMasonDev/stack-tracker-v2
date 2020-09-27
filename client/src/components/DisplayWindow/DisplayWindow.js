@@ -49,11 +49,13 @@ const DisplayWindow = ({ techStack, cityName, zip, loading }) => {
                 }
               </h4>
               {tech.info && tech.info.map(info=> {
-                return <div>
-                  <a href={info.url} target="_blank">{info.title} at {info.company}</a><br/>
+                return <div key={info.url}>
+                  <a href={info.url} target="_blank" rel="noopener noreferrer">{info.title} at {info.company}</a><br/>
                 </div>
               } )}
             </div> 
+          } else {
+            return null;
           }
         })
       }
