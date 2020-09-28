@@ -11,10 +11,10 @@ const DisplayWindow = ({ techStack, cityName, distance, loading, noResults }) =>
       <div>{loading ? 
           <div>
             <Loader 
-              type="Grid" 
+              type="Oval" 
               color="#0d7377" 
-              height={200} 
-              width={200} 
+              height={150} 
+              width={150} 
               timeout={0} 
             />
             <p>Scraping the interwebs. This may take up to 30 seconds...</p>
