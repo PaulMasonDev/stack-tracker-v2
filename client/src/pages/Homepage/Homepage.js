@@ -13,12 +13,12 @@ const Homepage = () => {
   const [distance, setDistance] = useState(25);
   const [noResults, setNoResults] = useState(false);
 
-  const handleSearch = (code, limitResults) => {
-    console.log(code, limitResults);
+  const handleSearch = (code, limitResults, radius) => {
+    console.log(code, limitResults, radius);
     setLoading(true);
     setCityName('');
     // setDistance(radius);
-    axios.get(`/${code}/${limitResults}`)
+    axios.get(`/${code}/${limitResults}/${radius}`)
       .then(res => {
         console.log(res.data);
         if(res.data === "No Results") {
