@@ -35,22 +35,22 @@ const Homepage = () => {
   }
   
   return (
-    // <div className="Homepage">
-    //   <SearchWindow
-    //     handleSearch={handleSearch}
-    //     cityName={cityName}
-    //   />
-    //   <DisplayWindow 
-    //     techStack={techStack}
-    //     cityName={cityName}
-    //     loading={loading}
-    //     distance={distance}
-    //     noResults={noResults}
-    //   />
-    // </div>
-    <div>
-      <h1>STACK TRACKER: INDREED API IS CURRENTLY DOWN.  LOOKING FOR ANOTHER SOLUTION. THANK YOU FOR YOUR PATIENCE. :)</h1>
+    <div className="Homepage">
+      <SearchWindow
+        handleSearch={handleSearch}
+        cityName={cityName}
+      />
+      <DisplayWindow 
+        techStack={techStack}
+        cityName={cityName}
+        loading={loading}
+        distance={distance}
+        noResults={noResults}
+      />
     </div>
+    // <div>
+    //   <h1>STACK TRACKER: INDREED API IS CURRENTLY DOWN.  LOOKING FOR ANOTHER SOLUTION. THANK YOU FOR YOUR PATIENCE. :)</h1>
+    // </div>
   )
 }
 
