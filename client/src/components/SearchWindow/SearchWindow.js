@@ -66,7 +66,7 @@ const SearchWindow = ({handleSearch, cityName}) => {
             Limit results (May speed up search time in metro areas)
           </label>
         </div>
-        <div>
+        {/* <div>
           <label>
             <input 
               type="number" 
@@ -77,7 +77,7 @@ const SearchWindow = ({handleSearch, cityName}) => {
             />
             Job Search Radius (1-100 miles)
           </label>
-        </div>
+        </div> */}
         {/* <div>
           <label htmlFor="jrdeveloper">Junior Developer</label>
           <input onChange={handleTitleChange} id="jrdeveloper" type="radio" name="title" value="Junior Developer" />

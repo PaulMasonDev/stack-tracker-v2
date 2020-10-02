@@ -25,7 +25,7 @@ let techStack = DATA;
 let location;
 let data;
 
-app.get('/:code/:limitResults/:radius', async (req, res) => {
+app.get('/:code/:limitResults', async (req, res) => {
   const code = req.params.code;
   console.log(req.params.limitResults);
   const resultsNum = req.params.limitResults ? 10 : 20 ;
