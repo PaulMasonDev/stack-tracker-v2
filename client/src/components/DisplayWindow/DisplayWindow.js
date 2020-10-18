@@ -60,9 +60,9 @@ const DisplayWindow = ({ techStack, cityName, distance, loading, noResults }) =>
         })
       }
       {noResults ? <div>No results found. Try changing your search radius.</div> : null}
-      <footer>
+      {/* <footer>
         <p>Copyright &copy;2020 Stack Tracker</p>
-      </footer>
+      </footer> */}
     </div>
   )
 }

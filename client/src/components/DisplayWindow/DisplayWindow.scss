@@ -1,7 +1,10 @@
 .DisplayWindow {
   text-align: center;
   padding: 15px;
-
+  position: absolute;
+  float: right;
+  right: 0;
+  width: 45%;
   .tech-header {
     display: flex;
     flex-direction: column;

@@ -48,7 +48,7 @@ const SearchWindow = ({handleSearch, cityName}) => {
             placeholder="Enter a zip code to search"
             onChange={handleSearchChange} />
           <br />
-          <label htmlFor="US">United States</label>
+          <label htmlFor="US">UNITED STATES</label>
           <input onChange={handleCountryChange} id="US" type="radio" name="country" value="us" defaultChecked/>
           {/* <label for="CAN">CAN</label>
           <input onChange={handleCountryChange} id="CAN" type="radio" name="country" value="ca"/>
@@ -63,7 +63,7 @@ const SearchWindow = ({handleSearch, cityName}) => {
               defaultChecked={limitResults}
               onChange={handleChecked}
              />
-            Limit results (Speed up search time)
+            LIMIT RESULTS (Speed up search time)
           </label>
         </div>
         {/* <div>
@@ -88,10 +88,11 @@ const SearchWindow = ({handleSearch, cityName}) => {
         </div> */}
         <button type="submit">SUBMIT</button>
       </form>
-      <p>{cityName}</p>
+      {/* <p>{cityName}</p> */}
       <footer>
-        <p>Like what you see? Visit <a href="https://www.paulmasondev.com" target="_blank" rel="noopener noreferrer">www.paulmasondev.com</a> for more.</p>
-        <p>Copyright &copy;2020 Stack Tracker</p>
+        <p>LIKE WHAT YOU SEE?</p> 
+        <p>VISIT <a href="https://www.paulmasondev.com" target="_blank" rel="noopener noreferrer">WWW.PAULMASONDEV.COM</a> FOR MORE.</p>
+        <p>COPYRIGHT &copy;2020 STACK TRACKER</p>
       </footer>
     </div>
   )
