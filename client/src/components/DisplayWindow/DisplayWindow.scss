@@ -14,7 +14,13 @@
       // margin-bottom: 10px;
     }
   }
-
-  
 }
 
+@media (max-width: 768px) {
+  .DisplayWindow {
+    position: static;
+    float: none;
+    width: auto;
+    right: auto;
+  }
+}
