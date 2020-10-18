@@ -38,19 +38,26 @@
   }
 
   button {
-    font-size: 1.6rem;
+    font-size: 1.7rem;
     margin-top:20px;
-    border-radius: 10px;
+    padding: 10px 30px;
+    border-radius: 100px;
     outline: none;
-    background-color: #0d7377;
-    color: #eeeeee;
-    transition: all 0.5s;
+    background-color: #5E8C87;
+    color: #fac3a1;
+    transition: all 0.2s;
+    backface-visibility: hidden;
+
 
     &:hover {
       cursor: pointer;
-      color: #212121;
-      background-color:#32e0c4;
-      transform: scale(1.1);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rbga(0, 0, 0, 1);
+    }
+
+    &:active {
+      transform: translateY(-1px);
+      box-shadow: 0 5px 10px rbga(0, 0, 0, 1);
     }
   }
 

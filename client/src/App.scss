@@ -3,12 +3,19 @@
 body {
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
   font-size: 1.6rem;
-  background-color: #eeeeee;
+  color: #fac3a1;
+  background-image: linear-gradient(to bottom right, #0d7477d3, #ae846dd3 ), url('../src/pages/Homepage/background.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100vh;
 }
 
+h1 {
+  letter-spacing: 8px;
+}
 a {
   margin: 5px auto 5px;
-  color: #0d7377;
+  color: #ffa268;
   &:visited {
     color: #212121; 
   }

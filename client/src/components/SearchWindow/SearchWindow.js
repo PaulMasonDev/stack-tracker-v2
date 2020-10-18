@@ -4,7 +4,7 @@ import './SearchWindow.scss';
 
 
 const SearchWindow = ({handleSearch, cityName}) => {
-  const [searchValue, setSearchValue] = useState();
+  const [searchValue, setSearchValue] = useState('');
   const [country, setCountry] = useState('us');
   const [title, setTitle] = useState('Software Developer');
   const [limitResults, setLimitResults] = useState(false);
@@ -34,7 +34,7 @@ const SearchWindow = ({handleSearch, cityName}) => {
     if((typeof Number(searchValue) === "number" && searchValue.length === 5) || searchValue.match(letters)) {
       handleSearch(searchValue, country, title, limitResults, radius);
     } else {
-      alert('Please enter a valid 5 digit zip code or city name (state optional)');
+      alert('Please enter a valid 5 digit zip code');
     }
   }
     
@@ -63,7 +63,7 @@ const SearchWindow = ({handleSearch, cityName}) => {
               defaultChecked={limitResults}
               onChange={handleChecked}
              />
-            Limit results (May speed up search time in metro areas)
+            Limit results (Speed up search time)
           </label>
         </div>
         {/* <div>

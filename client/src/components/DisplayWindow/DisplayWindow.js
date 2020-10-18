@@ -12,17 +12,17 @@ const DisplayWindow = ({ techStack, cityName, distance, loading, noResults }) =>
           <div>
             <Loader 
               type="Oval" 
-              color="#0d7377" 
+              color="#5E8C87" 
               height={150} 
               width={150} 
               timeout={0} 
             />
-            <p>Scraping the interwebs. This may take up to 30 seconds...</p>
+            <p>Scraping interwebs. May take up to 30 seconds...</p>
           </div> : 
           <div>
             <Loader
               type="Bars" 
-              color="#0d7377" 
+              color="#5E8C87" 
               height={200} 
               width={200} 
               timeout={0} 
@@ -33,7 +33,7 @@ const DisplayWindow = ({ techStack, cityName, distance, loading, noResults }) =>
       <h3>{cityName && noResults === false ? 
         <div>
           <p>Searched within {distance} {distance === 1 ? "mile" : "miles"} of {cityName} found the following results.</p>
-          <p>Good luck on the job hunt. YOU GOT THIS!</p>
+          <p>Good luck. YOU GOT THIS!</p>
         </div>
         : ''}
       </h3>
