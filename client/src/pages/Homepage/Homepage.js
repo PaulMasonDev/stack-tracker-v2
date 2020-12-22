@@ -46,12 +46,6 @@ const Homepage = () => {
         noResults={noResults}
       />
     </div>
-    // <div>
-    //   <h1>
-    //     STACK TRACKER: INDREED API IS CURRENTLY DOWN. LOOKING FOR ANOTHER
-    //     SOLUTION. THANK YOU FOR YOUR PATIENCE. :)
-    //   </h1>
-    // </div>
   );
 };
 

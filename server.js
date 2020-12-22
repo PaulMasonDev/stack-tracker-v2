@@ -1,13 +1,13 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const axios = require('axios');
-const cheerio = require('cheerio');
-const htmlToText = require('html-to-text');
-const cors = require('cors');
-const path = require('path');
-const enforce = require('express-sslify');
+const axios = require("axios");
+const cheerio = require("cheerio");
+const htmlToText = require("html-to-text");
+const cors = require("cors");
+const path = require("path");
+const enforce = require("express-sslify");
 
-const DATA = require('./DATA');
+const DATA = require("./DATA");
 
 app.use(express.json());
 app.use(cors());
@@ -18,17 +18,17 @@ app.use(cors());
 // sort=date SORT BY NEWEST
 
 const port = 5000;
-const environment = process.env.NODE_ENV || 'dev';
+const environment = process.env.NODE_ENV || "dev";
 
 let techStack = DATA;
 
 let location;
 let data;
 
-app.get('/:code/:limitResults', async (req, res) => {
+app.get("/:code/:limitResults", async (req, res) => {
   const code = req.params.code;
   console.log(req.params.limitResults);
-  const resultsNum = req.params.limitResults ? 10 : 20 ;
+  const resultsNum = req.params.limitResults ? 10 : 20;
   // const radius = req.params.radius;
   //THERE SEEMS TO BE A BUG WHEN TRYING TO USE EITHER TITLE OR COUNTRY OR RADIUS
   // const country = req.params.country;
@@ -36,65 +36,70 @@ app.get('/:code/:limitResults', async (req, res) => {
   // console.log('GENERATE RUNNING', code, country, title);
   await axios
     // EVENTUALLY CREATE PARAMETERS THAT CAN BE SELECTED TO MODIFY MAXIMUM NUMBER
-    .get(`https://indreed.herokuapp.com/api/jobs?q=Software%20Developer&l=${code}&sort=date&max=${resultsNum}`)
-    .then(async response => {
-      if(response.data.length > 0){
-        location = response.data[0].location;
-        for (job of response.data) {
-          console.log(job);
-          const jobResponse = await axios.get(job.url).catch(err => console.log(err));
-          let $;
-          let textData;
-          try {
-            $ = cheerio.load(jobResponse.data);
-            if($){
-              try {
-                textData = htmlToText.fromString($('body').html());
-              } catch (err) {
-                console.log(err);
-              }
-            }  
-          } catch (err) {
-            console.log(err);
-          }
-          
-          console.log('PARSING...');
-          for (let tech of techStack) {
-            if (textData && textData.toLowerCase().includes(tech.name)) {
-              tech.count++;
-              const info = {
-                url: job.url,
-                company: job.company,
-                title: job.title
-              }
-              tech.info.push(info);
-              console.log(tech.name, tech.count);
-            }
-          }  
-        }
-        data = {
-          location: location, 
-          code: code,
-          techStack: techStack
-        }
-        techStack.sort((a, b) => (b.count - a.count))
-        return data;
-      }
-      return "No Results"
+    .get(
+      `https://indreed.herokuapp.com/api/jobs?q=Software%20Developer&l=${code}&sort=date&max=${resultsNum}`
+    )
+    .then(async (response) => {
+      console.log("HERE", response.code);
+      // if (response.data.length > 0) {
+      //   location = response.data[0].location;
+      //   for (job of response.data) {
+      //     console.log(job);
+      //     const jobResponse = await axios
+      //       .get(job.url)
+      //       .catch((err) => console.log(err));
+      //     let $;
+      //     let textData;
+      //     try {
+      //       $ = cheerio.load(jobResponse.data);
+      //       if ($) {
+      //         try {
+      //           textData = htmlToText.fromString($("body").html());
+      //         } catch (err) {
+      //           console.log(err);
+      //         }
+      //       }
+      //     } catch (err) {
+      //       console.log(err);
+      //     }
+
+      //     console.log("PARSING...");
+      //     for (let tech of techStack) {
+      //       if (textData && textData.toLowerCase().includes(tech.name)) {
+      //         tech.count++;
+      //         const info = {
+      //           url: job.url,
+      //           company: job.company,
+      //           title: job.title,
+      //         };
+      //         tech.info.push(info);
+      //         console.log(tech.name, tech.count);
+      //       }
+      //     }
+      //   }
+      //   data = {
+      //     location: location,
+      //     code: code,
+      //     techStack: techStack,
+      //   };
+      //   techStack.sort((a, b) => b.count - a.count);
+      //   return data;
+      // }
+      // return "No Results";
     })
     .then((data) => {
-      res.send(data)
-      console.log('DATA SENT TO FRONTEND');
-    } )
-    .catch(err => console.log(err));
-    for (tech of techStack) {
-      tech.count = 0;
-      tech.info = [];
-    }
+      res.send(data);
+      console.log("DATA SENT TO FRONTEND");
+    })
+    .catch((err) => console.log(err));
+  for (tech of techStack) {
+    tech.count = 0;
+    tech.info = [];
+  }
 });
 
 // Redirect to React in non Dev environment
-if (environment !== 'dev') {
+if (environment !== "dev") {
   app.use(enforce.HTTPS({ trustProtoHeader: true }));
   app.use(express.static(path.join("client", "build")));
   app.get("*", (req, res) => {
